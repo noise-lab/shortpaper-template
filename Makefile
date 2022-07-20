@@ -11,7 +11,7 @@ REFS=$(REF1).bib $(REF2).bib
 
 all: pdf
 
-$(REPORT).pdf: figures $(SRCS) $(CLS)
+$(REPORT).pdf: $(SRCS) $(CLS)
 	$(LATEX) $(REPORT)
 #	$(BIBTEX) $(REPORT)
 #	perl -pi -e "s/%\s+//" $(REPORT).bbl
@@ -24,10 +24,6 @@ $(REPORT).ps: $(REPORT).dvi figures
 
 web: pdf
 	scp -C $(REPORT).pdf feamster@rigel.cc.gatech.edu:www/
-
-#not relevant here
-figures:
-	cd figures; make
 
 view: $(REPORT).dvi
 	xdvi $(REPORT).dvi
